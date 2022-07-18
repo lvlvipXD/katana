@@ -19,9 +19,9 @@ global.APIKeys = {
 }
 
 //customize settings\\
-global.owner = ['212636249972']
-global.premium = ['212636249972']
-global.ownernomer = '212636249972'
+global.owner = ['+212 636-249972']
+global.premium = ['+212 636-249972']
+global.ownernomer = '+212 636-249972'
 global.ownername = 'senpai'
 global.botname = 'senpai'
 global.footer = ''
@@ -29,7 +29,7 @@ global.ig = ''
 global.region = 'India, South India, Kerala'
 global.sc = ''
 global.myweb = ''
-global.packname = 'akashi'
+global.packname = 'By ༺𝐍𝐈𝐆𝐇𝐓 𓆩⚔️𓆪 𝐒𝐖𝐎𝐑𝐃𝐒༻'
 global.author = '🐦senpai'
 global.sessionName = 'session'
 global.prefa = ['','!','.','🐦','🐤','🗿']
