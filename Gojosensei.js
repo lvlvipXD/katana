@@ -1301,11 +1301,11 @@ GojoMdNx.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${san
       //case 'nigga':
       //case 'sexy':
       //case 'hot': {
-            if (!m.isGroup) return replay(`${mess.group}`)
+          if (!m.isGroup) return replay(`${mess.group}`)
             let member = participants.map(u => u.id)
             let me = m.sender
             let jodoh = member[Math.floor(Math.random() * member.length)]
-            let jawab = `اكثر واحد *${command}* هو @${jodoh.split('@')[0]}`
+            let jawab = `اكتر واحد *${command}* هنا هو @${jodoh.split('@')[0]}`
             let ments = [me, jodoh]
             let buttons = [
                         { buttonId: '👀', buttonText: { displayText: '👀😂' }, type: 1 }
