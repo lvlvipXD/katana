@@ -19,9 +19,9 @@ global.APIKeys = {
 }
 
 //customize settings\\
-global.owner = ['+212 636-249972']
-global.premium = ['+212 636-249972']
-global.ownernomer = '+212 636-249972'
+global.owner = ['212636249972']
+global.premium = ['212636249972']
+global.ownernomer = '212636249972'
 global.ownername = 'senpai'
 global.botname = 'senpai'
 global.footer = ''
@@ -35,7 +35,7 @@ global.sessionName = 'session'
 global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
 global.mess = {
-    success: '*تم *',
+    success: '*تم حبيب اي خدمه ؟*',
     admin: '*ورع هاالامر للادمنز فقط متعيدهاش تاني ولك*',
     botAdmin: '*متخليني ادمن اول يااد*',
     owner: '*فقط للمالك*',
