@@ -7,8 +7,6 @@ const { exec, spawn, execSync } = require("child_process")
 const axios = require('axios')
 const path = require('path')
 const os = require('os')
-const maker = require('mumaker')
-
 const moment = require('moment-timezone')
 const { JSDOM } = require('jsdom')
 const speed = require('performance-now')
@@ -245,14 +243,14 @@ const reply = (teks) => {
 	  //antilink\\
         if (db.data.chats[m.chat].antilink) {
         if (budy.match(`chat.whatsapp.com`)) {
-        reply(`「 حظر الروابط 」\n\n*رح يتم طردك لانك ارسلت رابط خارجي سوولام*`)
-        if (!isBotAdmins) return reply(`*افف انا مش ادمن هطلعو ازاي يعني* 😒`)
+        reply(`「 حظر الروابط 」\n\n*قلنا مية مرة ممنوع تبعت اي رابط في المجموعه لهيك رح تطلع باي* !`)
+        if (!isBotAdmins) return reply(`*مش هقدر اطلع الي بعت الرابط لاني مش ادمن* 😒`)
         let gclink = (`https://chat.whatsapp.com/`+await GojoMdNx.groupInviteCode(m.chat))
         let isLinkThisGc = new RegExp(gclink, 'i')
         let isgclink = isLinkThisGc.test(m.text)
-        if (isgclink) return reply(`*امممم انتا بعتت رابط الجروب دا مش هطلعك بس متعدهاش*`)
-        if (isAdmins) return reply(`*ممممم يلا هعمل نفسي مشفتكش لانك ادمن هيهي🤣*`)
-        if (isCreator) return reply(`*انا مالك سينباي هطلعك ازاي*`)
+        if (isgclink) return reply(`Group Is Installed With Anti-Link But I Won't Kick You 😉, Because You Sent This Group Link❤️`)
+        if (isAdmins) return reply(`*هي هي مش هقدر اطلعك لانك ادمن* ❤️`)
+        if (isCreator) return reply(`Group Is Installed With Anti-Link But I Won't Kick You 😉, Because You Are My Owner Hahahahah🤣😘`)
         GojoMdNx.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
         }
         }
@@ -349,9 +347,9 @@ ${Array.from(room.jawaban, (jawaban, index) => {
             kuis = true
             jawaban = kuismath[m.sender.split('@')[0]]
             if (budy.toLowerCase() == jawaban) {
-                await reply(`🎮 اختبار رياضيات 🎮\n\nاجابة صحيحة 🎉\n\n  بدك تلعب تاني؟    ${prefix}math mode`)
+                await reply(`🎮 اختبار رياضيات 🎮\n\nCorrect Answer 🎉\n\nبدك تلعب تاني? ابعت ${prefix}math mode`)
                 delete kuismath[m.sender.split('@')[0]]
-            } else reply('*اجابة خاطئة يالي عامل نفسو دحيح!*')
+            } else reply('*اجابة خاطئة يالي عامل نفسو دحيح*')
         }
 
         if (tebakgambar.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
@@ -426,10 +424,10 @@ ${Array.from(room.jawaban, (jawaban, index) => {
 	    }
 	    if (!isSurrender && 1 > (ok = room.game.turn(m.sender === room.game.playerO, parseInt(m.text) - 1))) {
 	    reply({
-	    '-3': 'انتهت اللعبة',
-	    '-2': 'غير متاح',
-	    '-1': 'غير متاح',
-	    0: 'مكان خاطئ',
+	    '-3': '*اللعبة انتهت*',
+	    '-2': 'خطأ',
+	    '-1': 'مكان خطأ',
+	    0: 'مكان خطأ',
 	    }[ok])
 	    return !0
 	    }
@@ -455,7 +453,7 @@ ${Array.from(room.jawaban, (jawaban, index) => {
 	    isWin = true
 	    }
 	    let winner = isSurrender ? room.game.currentTurn : room.game.winner
-	    let str = `رقم الروم: ${room.id}
+	    let str = `Room ID: ${room.id}
 
 ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
@@ -465,7 +463,7 @@ ${isWin ? `@${winner.split('@')[0]} Won!` : isTie ? `Game Over` : `Turn ${['❌'
 ❌: @${room.game.playerX.split('@')[0]}
 ⭕: @${room.game.playerO.split('@')[0]}
 
-اكتب *surrender* ادا تريد تستلم`
+Typed *surrender* to surrender and admited defeat`
 	    if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
 	    room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
 	    if (room.x !== room.o) await GojoMdNx.sendText(room.x, str, m, { mentions: parseMention(str) } )
@@ -496,10 +494,10 @@ ${isWin ? `@${winner.split('@')[0]} Won!` : isTie ? `Game Over` : `Turn ${['❌'
 @${roof.p.split`@`[0]} dan 
 @${roof.p2.split`@`[0]}
 
-روح للخاص اختار"
+Please Choose A Suit In The Respective Chat"
 Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] })
-	    if (!roof.pilih) GojoMdNx.sendText(roof.p, `اختار \n\حجر🗿\nورق📄\nمقص✂️`, m)
-	    if (!roof.pilih2) GojoMdNx.sendText(roof.p2, `اختار \n\nحجر🗿\nورق📄\nمقص✂️`, m)
+	    if (!roof.pilih) GojoMdNx.sendText(roof.p, `Please Select \n\حجر🗿\nورق📄\nمقص✂️`, m)
+	    if (!roof.pilih2) GojoMdNx.sendText(roof.p2, `Please Select \n\حجر🗿\nورق📄\nمقص✂️`, m)
 	    roof.waktu_milih = setTimeout(() => {
 	    if (!roof.pilih && !roof.pilih2) GojoMdNx.sendText(m.chat, `Both Players Don't Want To Play,\nSuit Canceled`)
 	    else if (!roof.pilih || !roof.pilih2) {
@@ -519,14 +517,14 @@ Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] 
 	    if (jwb && reg.test(m.text) && !roof.pilih && !m.isGroup) {
 	    roof.pilih = reg.exec(m.text.toLowerCase())[0]
 	    roof.text = m.text
-	    reply(`انتا اخترت ${m.text} ${!roof.pilih2 ? `\n\nاستنا خصمك يختار كمان` : ''}`)
-	    if (!roof.pilih2) GojoMdNx.sendText(roof.p2, '_خصمك اختار_\nدورك الحين', 0)
+	    reply(`انت اخترت ${m.text} ${!roof.pilih2 ? `\n\nاستنا خصمك يختار برضو` : ''}`)
+	    if (!roof.pilih2) GojoMdNx.sendText(roof.p2, '_الخصم اختار_\nالحين جا دورك', 0)
 	    }
 	    if (jwb2 && reg.test(m.text) && !roof.pilih2 && !m.isGroup) {
 	    roof.pilih2 = reg.exec(m.text.toLowerCase())[0]
 	    roof.text2 = m.text
-	    reply(`انتا اخترت ${m.text} ${!roof.pilih ? `\n\nاستنا خصمك يختار` : ''}`)
-	    if (!roof.pilih) GojoMdNx.sendText(roof.p, '_خصمك اختار_\nالحين دورك', 0)
+	    reply(`You Have Chosen ${m.text} ${!roof.pilih ? `\n\nWaiting For The Opponent To Choose` : ''}`)
+	    if (!roof.pilih) GojoMdNx.sendText(roof.p, '_الخصم اختار_\nدورك الحين', 0)
 	    }
 	    let stage = roof.pilih
 	    let stage2 = roof.pilih2
@@ -541,8 +539,8 @@ Click https://wa.me/${botNumber.split`@`[0]}`, m, { mentions: [roof.p, roof.p2] 
 	    else if (stage == stage2) tie = true
 	    GojoMdNx.sendText(roof.asal, `_*Suit Results*_${tie ? '\nSERIES' : ''}
 
-@${roof.p.split`@`[0]} (${roof.text}) ${tie ? '' : roof.p == win ? ` مبروك فزت \n` : ` ابلع ولك \n`}
-@${roof.p2.split`@`[0]} (${roof.text2}) ${tie ? '' : roof.p2 == win ? ` عاش كفو \n` : ` ايييبلاع \n`}
+@${roof.p.split`@`[0]} (${roof.text}) ${tie ? '' : roof.p == win ? ` مبروك فزت \n` : ` ابلع خسرت \n`}
+@${roof.p2.split`@`[0]} (${roof.text2}) ${tie ? '' : roof.p2 == win ? ` مبروك \n` : ` ابلع خسرت \n`}
 `.trim(), m, { mentions: [roof.p, roof.p2] })
 	    delete this.suit[roof.id]
 	    }
@@ -901,7 +899,7 @@ if (q.includes('--help')) return reply(examkosong)
             if (Object.values(this.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))) return replay(`You Are Still In The Game`)
             let room = Object.values(this.game).find(room => room.state === 'WAITING' && (text ? room.name === text : true))
             if (room) {
-            reply('جاري البحت عن الخصم ...')
+            reply('البحت عن الخصم!')
             room.o = m.chat
             room.game.playerO = m.sender
             room.state = 'PLAYING'
@@ -940,7 +938,7 @@ Type *surrender* to surrender and admit defeat`
             state: 'WAITING'
             }
             if (text) room.name = text
-            reply('انتظار الخصم' + (text ? ` Type The Command Below ${prefix}${command} ${text}` : ''))
+            reply('انتضار الخصم' + (text ? ` Type The Command Below ${prefix}${command} ${text}` : ''))
             this.game[room.id] = room
             }
             }
@@ -966,7 +964,7 @@ Type *surrender* to surrender and admit defeat`
             let timeout = 60000
             if (Object.values(this.suit).find(roof => roof.id.startsWith('suit') && [roof.p, roof.p2].includes(m.sender))) return replay(`Complete Your Previous Suit`)
 	    if (m.mentionedJid[0] === m.sender) return reply(`Can't Play With Myself !`)
-            if (!m.mentionedJid[0]) return reply(`_Who Do You Want To Challenge?_\nTag The Person..\n\nExample : ${prefix}suit @${owner[1]}`, m.chat, { mentions: [owner[1] + '@s.whatsapp.net'] })
+            if (!m.mentionedJid[0]) return reply(`_مين تريد تتحدى؟_\nسويله طاغ..\n\nمثال : ${prefix}suit @${owner[1]}`, m.chat, { mentions: [owner[1] + '@s.whatsapp.net'] })
             if (Object.values(this.suit).find(roof => roof.id.startsWith('suit') && [roof.p, roof.p2].includes(m.mentionedJid[0])))  reply(`The Person You Are Challenging Is Playing Suit With Someone Else :(`)
             let id = 'suit_' + new Date() * 1
             let caption = `_*SUIT PvP*_
@@ -1146,12 +1144,12 @@ Please @${m.mentionedJid[0].split`@`[0]} To Type Accept/Reject`
                 }
             }
             break
-            case 'mysoulmate': case 'سولميت': {
+            case 'mysoulmate': case 'سولميت' : {
             if (!m.isGroup) return replay(`${mess.group}`)
             let member = participants.map(u => u.id)
             let me = m.sender
             let jodoh = member[Math.floor(Math.random() * member.length)]
-            let jawab = `*👫توأم روحك هو*
+            let jawab = `👫 *توأم روحك هو*
 
 @${me.split('@')[0]} ❤️ @${jodoh.split('@')[0]}`
             let ments = [me, jodoh]
@@ -1161,16 +1159,16 @@ Please @${m.mentionedJid[0].split`@`[0]} To Type Accept/Reject`
                     await GojoMdNx.sendButtonText(m.chat, buttons, jawab, GojoMdNx.user.name, m, {mentions: ments})
             }
             break
-            case 'couple': case 'كوبل': {
+            case 'couple': case 'كوبل' : {
             if (!m.isGroup) return replay(`${mess.group}`)
             let member = participants.map(u => u.id)
             let orang = member[Math.floor(Math.random() * member.length)]
             let jodoh = member[Math.floor(Math.random() * member.length)]
             let jawab = `@${orang.split('@')[0]} ❤️ @${jodoh.split('@')[0]}
-*هممممم وش في هناك❤️💖👀*`
+*مممم وش في هناااك*❤️💖👀`
             let menst = [orang, jodoh]
             let buttons = [
-                        { buttonId: 'ممممم', buttonText: { displayText: '❤️' }, type: 1 }
+                        { buttonId: 'ممممم', buttonText: { displayText: '❤ممممم' }, type: 1 }
                     ]
                     await GojoMdNx.sendButtonText(m.chat, buttons, jawab, GojoMdNx.user.name, m, {mentions: menst})
             }
@@ -1189,9 +1187,9 @@ GojoMdNx.sendMessage(from, { text: `Question : Is ${q}\nAnswer : ${kah}` }, { qu
 GojoMdNx.sendMessage(from, { text: `Question : What ${q}\nAnswer : ${kahk}` }, { quoted: m })
 
 					break
-case 'can':
+case 'هوبقدر':
 				if (!text) return replay(`Use Text, Example : ${prefix + command} you fuck her lol `)
-					const bisa = [`Can`,`Can't`,`Cannot`,`Of Course You Can!!!`]
+					const bisa = [`تقدر`,`ماتقدر`,`مينفعش`,`خد راحتك`]
 					const ga = bisa[Math.floor(Math.random() * bisa.length)]
 GojoMdNx.sendMessage(from, { text: `Question : Can ${q}\nAnswer : ${ga}` }, { quoted: m })
 
@@ -1203,14 +1201,14 @@ case 'how':
 GojoMdNx.sendMessage(from, { text: `Question : ${q}\nAnswer : How ${ya}` }, { quoted: m })
 
 					break
-case 'rate':
+case 'تقييم':
 				if (!text) return replay(`Use Text, Example : ${prefix + command} My Dp`)
 					const ra = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const te = ra[Math.floor(Math.random() * ra.length)]
-GojoMdNx.sendMessage(from, { text: `Rate : ${q}\nAnswer : *${te}%*` }, { quoted: m })
+GojoMdNx.sendMessage(from, { text: `تقييم : ${q}\nالجواب : *${te}%*` }, { quoted: m })
 
 					break
-  case 'handsomecheck':
+  case 'تقييم_جمال':
 				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @Xeon`)
 					const gan = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const teng = gan[Math.floor(Math.random() * gan.length)]
@@ -1225,83 +1223,83 @@ GojoMdNx.sendMessage(from, { text: `*${command}*\n\nNama : ${q}\nAnswer : *${tik
 
 					break
 case 'awesomecheck':
-  case 'greatcheck':
+  //case 'greatcheck':
     //case 'gaycheck':
       case 'cutecheck':
         //case 'lesbicheck':
           //case 'lesbiancheck':
-            // case 'hornycheck':
+             //case 'hornycheck':
                  //case 'prettycheck':
                     //case 'lovelycheck':
-                      //case 'uglycheck':
+                      case 'uglycheck':
 				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @Xeon`)
 					const sangeh = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const sange = sangeh[Math.floor(Math.random() * sangeh.length)]
 GojoMdNx.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${sange}%*` }, { quoted: m })
 					break
-					case 'charactercheck':
+					case 'تقييم_شخصية':
 					if (!text) return replay(`Tag Someone, Example : ${prefix + command} @Xeon`)
-					const xeony =['Compassionate','Generous','Grumpy','Forgiving','Obedient','Good','Simp','Kind-Hearted','patient','UwU','top, anyway','Helpful']
+					const xeony =['عطوف😂','قلب حنين😂','سخي😂','نكدي(ة)','متسامح','مؤدب😂','جيد','مغفل','طيب القلب','صبور','متكاسل','مجد','مساعد_فاعلخير']
 					const taky = xeony[Math.floor(Math.random() * xeony.length)]
-					GojoMdNx.sendMessage(from, { text: `Character Check : ${q}\nAnswer : *${taky}*` }, { quoted: m })
+					GojoMdNx.sendMessage(from, { text: `تقييم شخصية : ${q}\nالجواب : *${taky}*` }, { quoted: m })
 				     break
-                    case 'متواضع':
-      case 'بخيل':
-      case 'عسل':
-      case 'طيوب':
-      case 'مز':
-      case 'عسل':
-      case 'رومانسي':
-      case 'مشكلجي':
-      case 'نسونجي':
-      case 'خروف':
-      case 'كيوت':
-      case 'متكبر':
-      case 'بخيل':
-      case 'غبي':
+                    case 'غبي':
+      //case 'foolish':
+      //case 'smart':
+      //case 'idiot':
+      //case 'gay':
+      //case 'lesbi':
+      case 'bastard':
+      case 'stubble':
+      //case 'dog':
+      //case 'fuck':
+      case 'ape':
+      case 'noob':
+      //case 'great':
+      //case 'horny':
+      //case 'wibu':
+      //case 'asshole':
+      case 'handsome':
+      case 'beautiful':
+      case 'cute':
+      case 'توكسيك':
+      case 'بشع':
+      case 'بارد':
+      case 'ممل':
+      case 'randi':
       case 'يجنن':
-      case 'دحيح':
-      case 'جميل':
-      case 'عبقري':
-      case 'نكدي':
-      case 'نيرد':
-      case 'عصبي':
-      case 'هادئ':
-      case 'زربه':
-      case 'ورع':
-      case 'سكر':
-      case 'نووب':
-      case 'ذكي':
-      case 'لعيب':
-      case 'حنون':
+      case 'وسيم':
+      case 'كيوت':
+      case 'اهبل':
+      case 'chutiya':
+      case 'nibba':
+      case 'nibbi':
+      case 'bhosdiwala':
+      case 'chutmarika':
+      case 'bokachoda':
+      case 'suarerbaccha':
+      case 'bolochoda':
+      case 'muthal':
+      case 'muthbaaz':
+      case 'randibaaz':
+      case 'topibaaz':
+      case 'cunt':
+      case 'nerd':
+      case 'behenchod':
+      case 'behnchoda':
+      case 'bhosdika':
       case 'مختل':
-      case 'عطوف':
-      case 'متهور':
-      //case 'chutmarika':
-      //case 'bokachoda':
-      //case 'suarerbaccha':
-      //case 'bolochoda':
-      //case 'muthal':
-      //case 'muthbaaz':
-      //case 'randibaaz':
-      //case 'topibaaz':
-      //case 'cunt':
-      //case 'nerd':
-      //case 'behenchod':
-      //case 'behnchoda':
-      //case 'bhosdika':
-      //case 'bc':
-      //case 'nerd':
-      //case 'mc':
-      //case 'bsdk':
-      //case 'bhosdk':
-      //case 'nigger':
-      //case 'loda':
-      //case 'laund':
-      //case 'nigga':
-      //case 'sexy':
-      //case 'hot': {
-          if (!m.isGroup) return replay(`${mess.group}`)
+      case 'نيرد':
+      case 'mc':
+      case 'نوب':
+      case 'قمر':
+      case 'ورع':
+      case 'مطي':
+      case 'laund':
+      case 'nigga':
+      case 'عسل':
+      case 'slowmotion': {
+            if (!m.isGroup) return replay(`${mess.group}`)
             let member = participants.map(u => u.id)
             let me = m.sender
             let jodoh = member[Math.floor(Math.random() * member.length)]
@@ -1313,7 +1311,7 @@ GojoMdNx.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${san
                     await GojoMdNx.sendButtonText(m.chat, buttons, jawab, GojoMdNx.user.name, m, {mentions: ments})
             }
             break
-case 'when':
+case 'متىى':
 				if (!text) return replay(`Use Text, Example : ${prefix + command} will i get married `)
 					const kapan = ['5 More Days', '10 More Days', '15 More Days','20 More Days', '25 More Days','30 More Days','35 More Days','40 More Days','45 More Days','50 More Days','55 More Days','60 More Days','65 More Days','70 More Days','75 More Days','80 More Days','85 More Days','90 More Days','100 More Days','5 Months More', '10 Months More', '15 Months More','20 Months More', '25 Months More','30 Months More','35 Months More','40 Months More','45 Months More','50 Months More','55 Months More','60 Months More','65 Months More','70 Months More','75 Months More','80 Months More','85 Months More','90 Months More','100 Months More','1 More Year','2 More Years','3 More Years','4 More Years','5 More Years','Tomorrow','The Day After Tomorrow',`After This Command, You Too ${q}`]
 					const kapankah = kapan[Math.floor(Math.random() * kapan.length)]
@@ -1366,13 +1364,13 @@ case 'halah': case 'hilih': case 'huluh': case 'heleh': case 'holoh':
                if (!text) return replay(`Example : ${prefix + command} packname|author`)
           global.packname = text.split("|")[0]
           global.author = text.split("|")[1]
-          reply(`تم تغيير حقوق الستكر الى to\n\n🐦 الاسم1 : ${global.packname}\n🐦 الاسم2 : ${global.author}`)
+          reply(`تم تغيير الحقوق الى\n\n🐦 الحقوق : ${global.packname}\n🐦 الاسم : ${global.author}`)
             }
             break
 	case 'kick': {
 		if (!m.isGroup) return replay(`${mess.group}`)
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
-                if (!isAdmins) return replay(`${mess.admin}`)
+                if (!isCreator) return replay(`${mess.owner}`)
 		let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		await GojoMdNx.groupParticipantsUpdate(m.chat, [users], 'remove').then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
 	}
@@ -1450,15 +1448,15 @@ case 'halah': case 'hilih': case 'huluh': case 'heleh': case 'holoh':
                 reply(mess.success)
                 }
                 break
-            case 'tagall': case 'طاغ': {
+            case 'tagall': case 'طاغ':  {
                 if (!m.isGroup) return replay(`${mess.group}`)
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins) return replay(`${mess.admin}`)
-let teks = `╚»˙· طاغ جماعي 🐿️•٠ 🐿️·˙«╝ 
+let teks = `╚»˙·٠•🐿️ طاغ جماعي 🐿️●•٠·˙«╝ 
  
  ➲ *Message : ${q ? q : 'no message'}*\n\n`
                 for (let mem of participants) {
-                teks += `🐿️ @${mem.id.split('@')[0]} 🐿️\n`
+                teks += `🐿️ @${mem.id.split('@')[0]}🐿️\n`
                 }
                 GojoMdNx.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                 }
@@ -1478,7 +1476,7 @@ let teks = `╚»˙· طاغ جماعي 🐿️•٠ 🐿️·˙«╝
                 let anu = await styletext(text)
                 let teks = `Entered Text ${text}\n\n`
                 for (let i of anu) {
-                    teks += `🐿️ *${i.name}* : ${i.result}\n\n`
+                    teks += `🐦 *${i.name}* : ${i.result}\n\n`
                 }
                 reply(teks)
 	    }
@@ -1544,7 +1542,7 @@ ${vote[m.chat][1].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')
 │ 
 └────
 
-┌〔 DEVOTE 〕
+┌〔 DEVOTE 〕ي
 │ 
 ┃╠ Total: ${vote[m.chat][2].length}
 ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
@@ -1759,26 +1757,26 @@ break
                     await sleep(1500)
                     let btn = [{
                                 urlButton: {
-                                    displayText: '🔖',
+                                    displayText: 'Script🔖',
                                     url: `${sc}`
                                 }
                             }, {
                                 urlButton: {
-                                    displayText: '📍',
+                                    displayText: 'YouTube📍',
                                     url: `${myweb}`
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText: '🎀قائمة🎀',
+                                    displayText: '🎀Menu🎀',
                                     id: 'menu'
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText: '👤المالك👤',
+                                    displayText: '👤Owner👤',
                                     id: 'owner'
                                 }
                             }]
-                      let txt = `「 سينااااي هنا 」\n\n${text}`
+                      let txt = `「 GOJO-SATORU HERE🎉 」\n\n${text}`
                       GojoMdNx.send5ButImg(i, txt, GojoMdNx.user.name, global.thumb, btn)
                     }
                 reply(`Successful Sending Broadcast To ${anu.length} Group(s)`)
@@ -1793,26 +1791,26 @@ break
 		    await sleep(1500)
 		    let btn = [{
                                 urlButton: {
-                                    displayText: '🔖',
+                                    displayText: 'Script🔖',
                                     url: `${sc}`
                                 }
                             }, {
                                 urlButton: {
-                                    displayText: '📍',
+                                    displayText: 'YouTube📍',
                                     url: `${myweb}`
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText: '🎀قائمة🎀',
+                                    displayText: '🎀Menu🎀',
                                     id: 'menu'
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText: '👤المالك👤',
+                                    displayText: '👤Owner👤',
                                     id: 'owner'
                                 }
                             }]
-                      let txt = `「 سينباي هنا 」\n\n${text}`
+                      let txt = `「 GOJO-SATORU HERE 🎉」\n\n${text}`
                       GojoMdNx.send5ButImg(yoi, txt, GojoMdNx.user.name, global.thumb, btn)
 		}
 		reply('Broadcast Success')
@@ -1866,7 +1864,7 @@ break
                     GojoMdNx.sendText(m.chat, 'Online List:\n\n' + online.map(v => '🐦 @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
              }
              break
-            case 'sticker': case 's': case 'ملصق': case 'sgif': {
+            case 'sticker': case 's': case 'stickergif': case 'sgif': case 'ستيكر': {
             if (!quoted) return replay(`Reply Video/Image With Caption ${prefix + command}`)
             reply(mess.wait)
                     if (/image/.test(mime)) {
@@ -2083,22 +2081,22 @@ break
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
                 let buttons = [
-                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '🎶مقطع صوتي'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '📽️فيديو📽️'}, type: 1}
+                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '🎶Audio🎶'}, type: 1},
+                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '📽️Video📽️'}, type: 1}
                 ]
                 let buttonMessage = {
                     image: { url: anu.thumbnail },
                     caption: `
-🐿️ Title : ${anu.title}
-🐿️ Ext : Search
-🐿️ ID : ${anu.videoId}
-🐿️ Duration : ${anu.timestamp}
-🐿️ Viewes : ${anu.views}
-🐿️ Uploaded On : ${anu.ago}
-🐿️ Author : ${anu.author.name}
-🐿️ Channel : ${anu.author.url}
-🐿️ Description : ${anu.description}
-🐿️ Url : ${anu.url}`,
+🐦 Title : ${anu.title}
+🐦 Ext : Search
+🐦 ID : ${anu.videoId}
+🐦 Duration : ${anu.timestamp}
+🐦 Viewes : ${anu.views}
+🐦 Uploaded On : ${anu.ago}
+🐦 Author : ${anu.author.name}
+🐦 Channel : ${anu.author.url}
+🐦 Description : ${anu.description}
+🐦 Url : ${anu.url}`,
                     footer: GojoMdNx.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -2174,80 +2172,6 @@ case 'webtonsearch': case 'webtoon':
                     reply(mess.error)
                 })
             break
-case 'candy': case 'christmas': case '3dchristmas': case 'sparklechristmas':
-case 'deepsea': case 'scifi': case 'rainbow': case 'waterpipe': case 'spooky': 
-case 'pencil': case 'circuit': case 'discovery': case 'metalic': case 'fiction': case 'demon': 
-case 'transformer': case 'berry': case 'thunder': case 'magma': case '3dstone': 
-case 'neonlight': case 'glitch': case 'harrypotter': case 'brokenglass': case 'papercut': 
-case 'watercolor': case 'multicolor': case 'neondevil': case 'underwater': case 'graffitibike':
- case 'snow': case 'cloud': case 'honey': case 'ice': case 'fruitjuice': case 'biscuit': case 'wood': 
-case 'chocolate': case 'strawberry': case 'matrix': case 'blood': case 'dropwater': case 'toxic': 
-case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': case 'joker': case 'wicker':
- case 'firework': case 'skeleton': case 'blackpink': case 'sand': case 'glue': case '1917': case 'leaves': {
-              if (!q) return reply(`Example : ${prefix + command} ${global.ownername}`) 
-          
-             let link
-             if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
-             if (/christmas/.test(command)) link = 'https://textpro.me/christmas-tree-text-effect-online-free-1057.html'
-             if (/3dchristmas/.test(command)) link = 'https://textpro.me/3d-christmas-text-effect-by-name-1055.html'
-             if (/sparklechristmas/.test(command)) link = 'https://textpro.me/sparkles-merry-christmas-text-effect-1054.html'
-             if (/deepsea/.test(command)) link = 'https://textpro.me/create-3d-deep-sea-metal-text-effect-online-1053.html'
-             if (/scifi/.test(command)) link = 'https://textpro.me/create-3d-sci-fi-text-effect-online-1050.html'
-             if (/rainbow/.test(command)) link = 'https://textpro.me/3d-rainbow-color-calligraphy-text-effect-1049.html'
-             if (/waterpipe/.test(command)) link = 'https://textpro.me/create-3d-water-pipe-text-effects-online-1048.html'
-             if (/spooky/.test(command)) link = 'https://textpro.me/create-halloween-skeleton-text-effect-online-1047.html'
-             if (/pencil/.test(command)) link = 'https://textpro.me/create-a-sketch-text-effect-online-1044.html'
-             if (/circuit/.test(command)) link = 'https://textpro.me/create-blue-circuit-style-text-effect-online-1043.html'
-             if (/discovery/.test(command)) link = 'https://textpro.me/create-space-text-effects-online-free-1042.html'
-             if (/metalic/.test(command)) link = 'https://textpro.me/creat-glossy-metalic-text-effect-free-online-1040.html'
-             if (/fiction/.test(command)) link = 'https://textpro.me/create-science-fiction-text-effect-online-free-1038.html'
-             if (/demon/.test(command)) link = 'https://textpro.me/create-green-horror-style-text-effect-online-1036.html'
-             if (/transformer/.test(command)) link = 'https://textpro.me/create-a-transformer-text-effect-online-1035.html'
-             if (/berry/.test(command)) link = 'https://textpro.me/create-berry-text-effect-online-free-1033.html'
-             if (/thunder/.test(command)) link = 'https://textpro.me/online-thunder-text-effect-generator-1031.html'
-             if (/magma/.test(command)) link = 'https://textpro.me/create-a-magma-hot-text-effect-online-1030.html'
-             if (/3dstone/.test(command)) link = 'https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html'
-             if (/neonlight/.test(command)) link = 'https://textpro.me/create-3d-neon-light-text-effect-online-1028.html'
-             if (/glitch/.test(command)) link = 'https://textpro.me/create-impressive-glitch-text-effects-online-1027.html'
-             if (/harrypotter/.test(command)) link = 'https://textpro.me/create-harry-potter-text-effect-online-1025.html'
-             if (/brokenglass/.test(command)) link = 'https://textpro.me/broken-glass-text-effect-free-online-1023.html'
-             if (/papercut/.test(command)) link = 'https://textpro.me/create-art-paper-cut-text-effect-online-1022.html'
-             if (/watercolor/.test(command)) link = 'https://textpro.me/create-a-free-online-watercolor-text-effect-1017.html'
-             if (/multicolor/.test(command)) link = 'https://textpro.me/online-multicolor-3d-paper-cut-text-effect-1016.html'
-             if (/neondevil/.test(command)) link = 'https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html'
-             if (/underwater/.test(command)) link = 'https://textpro.me/3d-underwater-text-effect-generator-online-1013.html'
-             if (/graffitibike/.test(command)) link = 'https://textpro.me/create-wonderful-graffiti-art-text-effect-1011.html'
-             if (/snow/.test(command)) link = 'https://textpro.me/create-snow-text-effects-for-winter-holidays-1005.html'
-             if (/cloud/.test(command)) link = 'https://textpro.me/create-a-cloud-text-effect-on-the-sky-online-1004.html'
-             if (/honey/.test(command)) link = 'https://textpro.me/honey-text-effect-868.html'
-             if (/ice/.test(command)) link = 'https://textpro.me/ice-cold-text-effect-862.html'
-             if (/fruitjuice/.test(command)) link = 'https://textpro.me/fruit-juice-text-effect-861.html'
-             if (/biscuit/.test(command)) link = 'https://textpro.me/biscuit-text-effect-858.html'
-             if (/wood/.test(command)) link = 'https://textpro.me/wood-text-effect-856.html'
-             if (/chocolate/.test(command)) link = 'https://textpro.me/chocolate-cake-text-effect-890.html'
-             if (/strawberry/.test(command)) link = 'https://textpro.me/strawberry-text-effect-online-889.html'
-             if (/matrix/.test(command)) link = 'https://textpro.me/matrix-style-text-effect-online-884.html'
-             if (/blood/.test(command)) link = 'https://textpro.me/horror-blood-text-effect-online-883.html'
-             if (/dropwater/.test(command)) link = 'https://textpro.me/dropwater-text-effect-872.html'
-             if (/toxic/.test(command)) link = 'https://textpro.me/toxic-text-effect-online-901.html'
-             if (/lava/.test(command)) link = 'https://textpro.me/lava-text-effect-online-914.html'
-             if (/rock/.test(command)) link = 'https://textpro.me/rock-text-effect-online-915.html'
-             if (/bloodglas/.test(command)) link = 'https://textpro.me/blood-text-on-the-frosted-glass-941.html'
-             if (/hallowen/.test(command)) link = 'https://textpro.me/halloween-fire-text-effect-940.html'
-             if (/darkgold/.test(command)) link = 'https://textpro.me/metal-dark-gold-text-effect-online-939.html'
-             if (/joker/.test(command)) link = 'https://textpro.me/create-logo-joker-online-934.html'
-             if (/wicker/.test(command)) link = 'https://textpro.me/wicker-text-effect-online-932.html'
-             if (/firework/.test(command)) link = 'https://textpro.me/firework-sparkle-text-effect-930.html'
-             if (/skeleton/.test(command)) link = 'https://textpro.me/skeleton-text-effect-online-929.html'
-             if (/blackpink/.test(command)) link = 'https://textpro.me/create-blackpink-logo-style-online-1001.html'
-             if (/sand/.test(command)) link = 'https://textpro.me/write-in-sand-summer-beach-free-online-991.html'
-             if (/glue/.test(command)) link = 'https://textpro.me/create-3d-glue-text-effect-with-realistic-style-986.html'
-             if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
-                if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
-             let anu = await maker.textpro(link, q)
-                GojoMdNx.sendMessage(m.chat, { image: { url: anu }, caption: `Made by ${global.botname},For my Darling ` }, { quoted: m })
-             }
-             break
             case 'drakorxxx':
                 if (!text) return reply('What Are You Looking For??')
                 await reply(mess.wait)
@@ -2338,27 +2262,12 @@ case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': ca
                     reply(mess.error)
                 })
             break
-case 'textmakerl': {
-if (args.length < 1) return reply(`Example :\n${prefix + command} Name`)
-if (args[0] === 'glitch') {
-if (args.length < 2) return reply(`Example :\n${prefix + command + ' ' + args[0]} ${global.ownername}`)
-let teds = await thiccysapi.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", [args[1]])
-GojoMdNx.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
-} else if (args[0] === 'glow') {
-if (args.length < 2) return reply(`Example :\n${prefix + command + ' ' + args[0]} ${global.ownername}`)
-let teds = await thiccysapi.textpro("https://textpro.me/create-light-glow-sliced-text-effect-online-1068.html", [args[1]])
-GojoMdNx.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
-} else {
-reply(`*Text Maker List :*\n•> glitch\n•> glow`)
-}
-}
-break
-            //case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
+            case 'waifu': case 'husbu': case 'neko': case 'shinobu': case 'megumin': case 'waifus': case 'nekos': case 'trap': case 'blowjob': {
                 reply(mess.wait)
                 GojoMdNx.sendMessage(m.chat, { image: { url: api('zenz', '/api/random/'+command, {}, 'apikey') }, caption: 'Generated Random ' + command }, { quoted: m })
             }
             break
-	    case 'couplepp':  case 'ppcouple': case 'تطقيم': {
+	    case 'couplepp':  case 'ppcouple':case 'تطقيم': {
                 reply(mess.wait)
                 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
                 let random = anu[Math.floor(Math.random() * anu.length)]
@@ -2390,7 +2299,7 @@ break
                 ]
                 let buttonMessage = {
                     image: { url: result.image[0] },
-                    caption: `🐿️ Title : ${result.title}\n🐿️ Category : ${result.type}\n🐿️ Detail : ${result.source}\n🐿️ Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
+                    caption: `🐦 Title : ${result.title}\n🐦 Category : ${result.type}\n🐦 Detail : ${result.source}\n🐦 Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
                     footer: GojoMdNx.user.name,
                     buttons: buttons,
                     headerType: 4
@@ -2453,7 +2362,7 @@ break
 	    }
             break
 	    case 'nomerhoki': case 'nomorhoki': {
-                if (!Number(text)) return reply(`Example : ${prefix + command} 212121212`)
+                if (!Number(text)) return reply(`Example : ${prefix + command} 916909137213`)
                 let anu = await primbon.nomer_hoki(Number(text))
                 if (anu.status == false) return reply(anu.message)
                 GojoMdNx.sendText(m.chat, `🐦 *Phone Number :* ${anu.message.nomer_hp}\n🐦 *Shuzi Angka Figures :* ${anu.message.angka_shuzi}\n🐦 *Positive Energy :*\n- Riches : ${anu.message.energi_positif.kekayaan}\n- Health : ${anu.message.energi_positif.kesehatan}\n- Love : ${anu.message.energi_positif.cinta}\n- Stability : ${anu.message.energi_positif.kestabilan}\n- Percentage : ${anu.message.energi_positif.persentase}\n🐦 *Negative Energy :*\n- Dispute : ${anu.message.energi_negatif.perselisihan}\n- Lost : ${anu.message.energi_negatif.kehilangan}\n- Catastrophe : ${anu.message.energi_negatif.malapetaka}\n- Destruction : ${anu.message.energi_negatif.kehancuran}\n- Percentage : ${anu.message.energi_negatif.persentase}`, m)
@@ -3365,7 +3274,13 @@ reply("Success Changing Menu To "+q)
 typemenu = 'catalog'
 reply("Success Changing Menu To "+q)
 }
-
+break
+                    case 'bug': case 'report': {
+                    	if(!text) return reply(`Enter The Bug\n\nExample: ${command} Menu Error`)
+                    	GojoMdNx.sendMessage(`918129624395@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
+Report Message: ${text}` })
+reply(`Successfully Reported To The Owner\n\nPlease Make Sure The Bug Is Valid, If You Play With This, Use This Feature Again And Again For No Reason, You Will Be Blocked For Sure !`)
+                    }
                     break
                      case 'alive': case 'bot':{
                            	timestampe = speed();
@@ -3378,22 +3293,22 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                             locationMessage: {
                             jpegThumbnail: fs.readFileSync('./GojoMedia/gojo.jpg')},
                             hydratedFooterText: `┌─❖
-│「 هاي 👋 」
+│「 هاااي 👋 」
 └┬❖ 「 ${pushname} 」
-┌┤✑  ارحب🎉
+┌┤✑  こんにちは🎉
 ││✑  🐦🖐️!!
 │└───────────────┈ ⳹
-│ 「 معلومات البوت 」
-│✙ السرعة : ${latensie.toFixed(4)} miliseconds
-│✙ المدة : ${runtime(process.uptime())}
-│✙ اسم البوت : ${global.botname}
-│✙ المالك : ${global.ownername}
-│✙ رقم المالك : ${global.owner}
-│✙ الهوست : ${os.hostname()}
-│✙ المنصة : ${os.platform()}
-│✙ عدد المستخدمين : ${Object.keys(global.db.data.users).length}
+│ 「 BOT INFO 」
+│✙ 𝗦𝗽𝗲𝗲𝗱 : ${latensie.toFixed(4)} miliseconds
+│✙ 𝗥𝘂𝗻𝘁𝗶𝗺𝗲 : ${runtime(process.uptime())}
+│✙ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ${global.botname}
+│✙ 𝗢𝘄𝗻𝗲𝗿 𝗡𝗮𝗺𝗲 : ${global.ownername}
+│✙ 𝗢𝘄𝗻𝗲𝗿 𝗡𝘂𝗺𝗯𝗲𝗿 : ${global.owner}
+│✙ 𝗛𝗼𝘀𝘁 𝗡𝗮𝗺𝗲 : ${os.hostname()}
+│✙ 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : ${os.platform()}
+│✙ 𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.data.users).length}
 └┬──────────────┈ ⳹
-   │✑  المرجوا استخدام البوت برفق
+   │✑  Please Select The Button Below
    └───────────────┈ ⳹`,
                             hydratedButtons: [{
                                 urlButton: {
@@ -3427,7 +3342,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 GojoMdNx.relayMessage(m.chat, template.message, { messageId: template.key.id })
                 }
 break
-            case 'الاوامر': case 'menu': {
+            case 'list': case 'menu': case 'الاوامر': {
             	timestampe = speed();
 latensie = speed() - timestampe
                 anu = ``
@@ -3439,21 +3354,21 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                             jpegThumbnail: fs.readFileSync('./GojoMedia/gojo.jpg')}, 
                             hydratedFooterText: `
 ┌─❖
-│「 هااااي 👋 」
+│「 هاااي 👋 」
 └┬❖ 「 ${pushname} 」
-┌┤✑  كيف حالك حبيب؟😄
+┌┤✑  الاوضاع تمام ؟😄
 │└───────────────┈ ⳹
-│ 「 معلومات سينباي」
-│✙ السرعه : ${latensie.toFixed(4)} miliseconds
-│✙ مده التشغيل : ${runtime(process.uptime())}
-│✙ اسم البوت : ${global.botname}
-│✙ اسم المالك : ${global.ownername}
-│✙ رقم المالك : ${global.owner}
-│✙ الهوست : ${os.hostname()}
-│✙ المنصة : ${os.platform()}
-│✙ عدد اليوزرز : ${Object.keys(global.db.data.users).length}
+│ 「 BOT INFO 」
+│✙ 𝗦𝗽𝗲𝗲𝗱 : ${latensie.toFixed(4)} miliseconds
+│✙ 𝗥𝘂𝗻𝘁𝗶𝗺𝗲 : ${runtime(process.uptime())}
+│✙ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ${global.botname}
+│✙ 𝗢𝘄𝗻𝗲𝗿 𝗡𝗮𝗺𝗲 : ${global.ownername}
+│✙ 𝗢𝘄𝗻𝗲𝗿 𝗡𝘂𝗺𝗯𝗲𝗿 : ${global.owner}
+│✙ 𝗛𝗼𝘀𝘁 𝗡𝗮𝗺𝗲 : ${os.hostname()}
+│✙ 𝗣𝗹𝗮𝘁𝗳𝗼𝗿𝗺 : ${os.platform()}
+│✙ 𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.data.users).length}
 └┬──────────────┈ ⳹
-   │✑  المرجوا عدم الضغط على البوت
+   │✑  المرجوا استعمال البوت برفق 
    └───────────────┈ ⳹`,
                             hydratedButtons: [{
                                 urlButton: {
@@ -3490,8 +3405,8 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 case 'command': {
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `هاي ${pushname}`,
-                    description: `اختر من القائمة\n\n`,
+                    title: `Hi ${pushname}`,
+                    description: `Please Choose The Menu\n\n`,
                     buttonText: "Menu",
                     footerText: `${global.footer}`,
                     listType: "SINGLE_SELECT",
@@ -3616,7 +3531,7 @@ let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObje
                 GojoMdNx.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/c15f725add0381fb69c4b.jpg' }, caption: `*Hi Bro ${m.pushName}*\nDonation section is currently down🥲 , I know you are happy but me 🥲💔\n` }, { quoted: m })
             }
             break
-            //case 'sc': case 'script': {
+            case 'sc': case 'script': {
                 reply(`GitHub : https://github.com/nexusNw/Gojo-Satoru\n Dont Forget To Give Star\n\nYouTube : ${myweb}\nDont Forget To Watch Tutorial`)
             }
             break
@@ -3847,12 +3762,12 @@ case 'allmenu': {
                             hydratedFooterText: `${pushname}`,
                             hydratedButtons: [{
                                 urlButton: {
-                                    displayText: '📍',
+                                    displayText: 'YouTube📍',
                                     url: `${myweb}`
                                 }
                             }, {
                                 quickReplyButton: {
-                                    displayText: '🐿️المالك👤',
+                                    displayText: '👤Owner👤',
                                     id: `${prefix}owner`
                                 }
                             }]
@@ -3946,11 +3861,33 @@ await GojoMdNx.send5ButImg(from, `` + '' + ' ', `
 ┃╠ ${prefix}beautifulcheck [tag]
 ┃╠ ${prefix}awesomecheck [tag]
 ┃╠ ${prefix}prettycheck [tag]
+┃╠ ${prefix}lesbiancheck [tag]
+┃╠ ${prefix}gaycheck [tag]
+┃╠ ${prefix}cutecheck [tag]
+┃╠ ${prefix}uglycheck [tag]
+┃╠ ${prefix}hornycheck [tag]
 ┃╠ ${prefix}charactercheck [tag]
 ┃╠ ${prefix}lovelycheck [tag]
 ┃╠ ${prefix}couple
 ┃╠ ${prefix}mysoulmate
 ┃╠ ${prefix}hot
+┃╠ ${prefix}sexy
+┃╠ ${prefix}kind
+┃╠ ${prefix}handsome
+┃╠ ${prefix}beautiful
+┃╠ ${prefix}cute
+┃╠ ${prefix}pretty
+┃╠ ${prefix}lesbian
+┃╠ ${prefix}noob
+┃╠ ${prefix}bastard
+┃╠ ${prefix}foolish
+┃╠ ${prefix}nerd
+┃╠ ${prefix}asshole
+┃╠ ${prefix}gay
+┃╠ ${prefix}smart
+┃╠ ${prefix}stubble
+┃╠ ${prefix}dog
+┃╠ ${prefix}black
 ┃╠ ${prefix}cunt
 ┃╠ ${prefix}wibu
 ┃╠ ${prefix}tictactoe
@@ -4046,6 +3983,8 @@ await GojoMdNx.send5ButImg(from, `` + '' + ' ', `
 ┃╠${prefix}cry
 ┃╠${prefix}hug
 ┃╠${prefix}awoo
+┃╠${prefix}kiss
+┃╠${prefix}lick
 ┃╠${prefix}pat
 ┃╠${prefix}smug
 ┃╠${prefix}bonk
