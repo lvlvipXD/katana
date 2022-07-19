@@ -1246,27 +1246,27 @@ GojoMdNx.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${san
                     case 'غبي':
       //case 'foolish':
       //case 'smart':
-      //case 'idiot':
-      //case 'gay':
-      //case 'lesbi':
-      case 'bastard':
-      case 'stubble':
-      //case 'dog':
-      //case 'fuck':
-      case 'ape':
-      case 'noob':
-      //case 'great':
-      //case 'horny':
-      //case 'wibu':
-      //case 'asshole':
-      case 'handsome':
-      case 'beautiful':
-      case 'cute':
+      case 'مغفل':
+      case 'شاطر':
+      case 'هادئ':
+      case 'كذاب':
+      case 'متكبر':
+      case 'مشكلجي':
+      case 'عطوف':
+      case 'رومانسي':
+      case 'مز':
+      case 'طيوب':
+      case 'متواضع':
+      case 'عصبي':
+      case 'بخيل':
+      case 'حنون':
+      case 'دحيح':
+      case 'نكدي':
       case 'توكسيك':
       case 'بشع':
       case 'بارد':
       case 'ممل':
-      case 'randi':
+      case 'نسونجي':
       case 'يجنن':
       case 'وسيم':
       case 'كيوت':
@@ -1294,7 +1294,7 @@ GojoMdNx.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${san
       case 'نوب':
       case 'قمر':
       case 'ورع':
-      case 'مطي':
+      case 'حزين':
       case 'laund':
       case 'nigga':
       case 'عسل':
@@ -2081,8 +2081,8 @@ break
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
                 let buttons = [
-                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '🎶Audio🎶'}, type: 1},
-                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '📽️Video📽️'}, type: 1}
+                    {buttonId: `ytmp3 ${anu.url}`, buttonText: {displayText: '🎶صوتية🎶'}, type: 1},
+                    {buttonId: `ytmp4 ${anu.url}`, buttonText: {displayText: '📽️فيديو📽️'}, type: 1}
                 ]
                 let buttonMessage = {
                     image: { url: anu.thumbnail },
@@ -3298,7 +3298,7 @@ const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 ┌┤✑  こんにちは🎉
 ││✑  🐦🖐️!!
 │└───────────────┈ ⳹
-│ 「 BOT INFO 」
+│ 「 معلومات البوت 」
 │✙ 𝗦𝗽𝗲𝗲𝗱 : ${latensie.toFixed(4)} miliseconds
 │✙ 𝗥𝘂𝗻𝘁𝗶𝗺𝗲 : ${runtime(process.uptime())}
 │✙ 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲 : ${global.botname}
@@ -3671,6 +3671,10 @@ case 'allmenu': {
 ┃╠ ${prefix}جميل
 ┃╠ ${prefix}عبقري
 ┃╠ ${prefix}نكدي
+┃╠ ${prefix}حزين
+┃╠ ${prefix}اهبل
+┃╠ ${prefix}بارد
+┃╠ ${prefix}توكسيك
 ┃╠ ${prefix}عصبي
 ┃╠ ${prefix}هادئ
 ┃╠ ${prefix}ورع
