@@ -19,14 +19,14 @@ global.APIKeys = {
 }
 
 //customize settings\\
-global.owner = ['212636249972']
+global.owner = ['212636249972','212770034185']
 global.premium = ['212636249972']
-global.ownernomer = '212636249972'
+global.ownernomer = 'Akashi'
 global.ownername = 'senpai'
 global.botname = 'senpai'
 global.footer = ''
 global.ig = ''
-global.region = 'India, South India, Kerala'
+global.region = 'Morocco'
 global.sc = ''
 global.myweb = ''
 global.packname = 'By ༺𝐍𝐈𝐆𝐇𝐓 𓆩⚔️𓆪 𝐒𝐖𝐎𝐑𝐃𝐒༻'
