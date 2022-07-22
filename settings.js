@@ -19,8 +19,8 @@ global.APIKeys = {
 }
 
 //customize settings\\
-global.owner = ['212636249972','212770034185']
-global.premium = ['212636249972']
+global.owner = ['212 636-249972']
+global.premium = ['212 636-249972']
 global.ownernomer = 'Akashi'
 global.ownername = 'senpai'
 global.botname = 'senpai'
