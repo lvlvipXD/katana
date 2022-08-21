@@ -1287,10 +1287,10 @@ GojoMdNx.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${san
       case 'nerd':
       case 'behenchod':
       case 'behnchoda':
-      case 'bhosdika':
+      case 'خروف':
       case 'مختل':
       case 'نيرد':
-      case 'mc':
+      case 'محنك':
       case 'نوب':
       case 'قمر':
       case 'ورع':
