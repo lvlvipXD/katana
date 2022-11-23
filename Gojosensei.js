@@ -1962,7 +1962,7 @@ break
             reply(db)
         }
         break
-            case 'emojimix': {
+            case 'دمج': {
 	        if (!text) return replay(`Example : ${prefix + command} 😅+🤔`)
 		let [emoji1, emoji2] = text.split`+`
 		let anu = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
@@ -1972,7 +1972,7 @@ break
 		}
 	    }
 	    break
-            case 'toimage': case 'toimg': {
+            case 'toimage': case 'لصورة': {
                 if (!quoted) return reply(`Reply Image`)
                 if (!/webp/.test(mime)) reply(`Reply Sticker With Caption *${prefix + command}*`)
                 reply(mess.wait)
