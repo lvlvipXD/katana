@@ -1360,7 +1360,7 @@ Akashi.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${sange
             let buttons = [
                         { buttonId: '👀', buttonText: { displayText: '👀😂' }, type: 1 }
                     ]
-                    await Akashi.sendButtonText(m.chat, buttons, jawab, Akashi.user.name, m, {mentions: ments})
+                    await Akashi.sendButtonText(m.chat, jawab, Akashi.user.name, m, {mentions: ments})
             }
             break
 case 'متىى':
@@ -1411,14 +1411,14 @@ case 'halah': case 'hilih': case 'huluh': case 'heleh': case 'holoh':
                 await Akashi.groupLeave(m.chat).then((res) => reply(jsonformat(res))).catch((err) => reply(jsonformat(err)))
             }
             break
-            case 'setexif': {
-               if (!isCreator) return replay(`${mess.owner}`)
-               if (!text) return replay(`Example : ${prefix + command} packname|author`)
-          global.packname = text.split("|")[0]
-          global.author = text.split("|")[1]
-          reply(`تم تغيير الحقوق الى\n\n🐦 الحقوق : ${global.packname}\n🐦 الاسم : ${global.author}`)
-            }
-            break
+           // case 'setexif': {
+             //  if (!isCreator) return replay(`${mess.owner}`)
+               //if (!text) return replay(`Example : ${prefix + command} packname|author`)
+          //global.packname = text.split("|")[0]
+          //global.author = text.split("|")[1]
+          //reply(`تم تغيير الحقوق الى\n\n🐦 الحقوق : ${global.packname}\n🐦 الاسم : ${global.author}`)
+            //}
+            //break
 	case 'kick':case 'طرد': {
 		if (!m.isGroup) return replay(`${mess.group}`)
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
