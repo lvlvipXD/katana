@@ -1167,7 +1167,7 @@ Please @${m.mentionedJid[0].split`@`[0]} To Type Accept/Reject`
                 }
             }
             break
- case 'سولميت': {
+ case 'سولببببببميت': {
 if (!m.isGroup) return replay(`${mess.grouponly}`)
 let member = participants.map(u => u.id)
 let me = m.sender
@@ -1199,7 +1199,7 @@ await couple(percentage)
 await Akashi.sendButtonText(m.chat,jawab, Akashi.user.name, m, {mentions: ments})
 }
 break
-case 'صحبة': case 'صداقة': {
+case 'صحيبيبيببة': case 'صدايبيبقة': {
 if (!m.isGroup) return replay(`${mess.grouponly}`)
 let member = participants.map(u => u.id)
 let orang = member[Math.floor(Math.random() * member.length)]
@@ -1211,7 +1211,7 @@ let menst = [orang, jodoh]
 await Akashi.sendButtonText(m.chat, jawab, Akashi.user.name, m, {mentions: menst})
 }
 break
-           case 'couple': case 'كوبل' : {
+           case 'coupيبيبle': case 'كوبيبيبيبل' : {
            if (!m.isGroup) return replay(`${mess.group}`)
            let member = participants.map(u => u.id)
             let orang = member[Math.floor(Math.random() * member.length)]
